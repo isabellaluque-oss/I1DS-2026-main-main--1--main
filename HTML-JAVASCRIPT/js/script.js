@@ -1,40 +1,51 @@
-// function olaMundo() {
-//   alert("Olá Mundo!");
-// }
+function cadastrar(event) {
+  event.preventDefault();
 
-/* Arrow function */
-const olaMundo = () => {
-  alert("Olá Mundo JS com Arrow Function!");
-};
+  let nome = document.getElementById("nome").value;
+  let email = document.getElementById("email").value;
 
-const mudarTexto = () => {
-  // Criar uma variavel para armazenar o elemento do documento
+  let lista = document.getElementById("lista");
 
-  let elementoAlvo = document.getElementById("texto");
+  // Criar <li>
+  let novoItem = document.createElement("li");
 
-  elementoAlvo.innerHTML = "🔥 Novo texto com JS";
-  elementoAlvo.style.color = "red";
-  elementoAlvo.style.backgroundColor = "yellow";
-};
+  // Texto
+  let texto = document.createElement("span");
+  texto.innerText = nome + " - " + email;
 
-const enviarNome = () => {
-  let nomeDigitado = document.getElementById("nome").value;
-  alert("Olá " + nomeDigitado);
+  // BOTÃO EDITAR
+  let btnEditar = document.createElement("button");
+  btnEditar.innerText = "Editar";
 
-  // let nomeDigitado = document.getElementsByName("nome").value;
-  // alert("Olá " + nomeDigitado);
-};
+  btnEditar.onclick = function () {
+    let novoNome = prompt("Novo nome:", nome);
+    let novoEmail = prompt("Novo email:", email);
 
-const somar = () => {
-  event.preventDefault(); //
-  // Buscou os elementos por ID
-  let numero1 = document.getElementById("n1").value;
-  let numero2 = parseInt(document.getElementById("n2").value);
+    if (novoNome && novoEmail) {
+      texto.innerText = novoNome + " - " + novoEmail;
 
-  // Realizou a soma dos valores
-  let result = parseInt(numero1) + numero2;
-  // let result =  + numero2;
+      // Atualiza valores internos
+      nome = novoNome;
+      email = novoEmail;
+    }
+  };
 
-  // Devolveu o resultado para o formulario
-  document.getElementById("resultado").innerHTML = result;
-};
+  // BOTÃO EXCLUIR
+  let btnExcluir = document.createElement("button");
+  btnExcluir.innerText = "Excluir";
+
+  btnExcluir.onclick = function () {
+    lista.removeChild(novoItem);
+  };
+
+  // Adicionar tudo no <li>
+  novoItem.appendChild(texto);
+  novoItem.appendChild(btnEditar);
+  novoItem.appendChild(btnExcluir);
+
+  lista.appendChild(novoItem);
+
+  // Limpar campos
+  document.getElementById("nome").value = "";
+  document.getElementById("email").value = "";
+}
