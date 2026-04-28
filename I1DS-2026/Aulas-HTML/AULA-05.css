@@ -1,0 +1,15 @@
+/* comentario em css */
+/*
+seletores de css
+seletor de classes -> .
+seletor de id -> #
+seletor de elemento -> tag html
+*/
+body{
+    background-color: #fda1ec; /* cor de fundo */
+    font-family: Arial, sans-serif;
+    fort-size: 16px; /* tamanho da fonte */
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
